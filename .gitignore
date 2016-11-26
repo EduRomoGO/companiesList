@@ -66,3 +66,7 @@ Temporary Items
 
 # Ignore node_modules
 /node_modules
+
+# Ignore bower components
+/bower_components
+
