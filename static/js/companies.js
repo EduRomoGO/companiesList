@@ -19,20 +19,17 @@ function appendAndStampTemplate ({companyTemplate}) {
 	);
 }
 
+function createDomElement (company, index) {
+	var companyTemplate = document.querySelector('#company-item-template').content;
+
+	fillTemplate({companyTemplate, company});
+	appendAndStampTemplate({companyTemplate});
+	document.getElementsByClassName('company')[index].addEventListener('click', removeElem);
+}
+
 function loadCompanies () {
-
 	$.getJSON('/companies', function (companyList) {
-
-		companyList.forEach(function (company, index) {
-			var companyTemplate = document.querySelector('#company-item-template').content;
-
-			fillTemplate({companyTemplate, company});
-
-			appendAndStampTemplate({companyTemplate});
-			
-			document.getElementsByClassName('company')[index].addEventListener('click', removeElem);
-		});
-
+		companyList.forEach(createDomElement);
 	});
 }
 
