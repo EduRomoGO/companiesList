@@ -1,33 +1,42 @@
 'use strict';
 
-document.addEventListener('DOMContentLoaded', function () {
+function removeElem (event) {
+	document.getElementById('companies-list').removeChild(this);
+}
 
-	function loadCompanies () {
+function fillTemplate ({companyTemplate, company}) {
+	companyTemplate.querySelector('.name').textContent = company.company;
+	companyTemplate.querySelector('.description').textContent = company.description;
+	companyTemplate.querySelector('.email').textContent = company.email;
+	companyTemplate.querySelector('.url').textContent = company.url;
+	companyTemplate.querySelector('.country').textContent = company.country;
+}
 
-		function removeElem (event) {
-			document.getElementById('companies-list').removeChild(this);
-		}
 
-		$.getJSON('/companies', function (companyList) {
+function appendAndStampTemplate ({companyTemplate}) {
+	document.querySelector('#companies-list').appendChild(
+		document.importNode(companyTemplate, true)
+	);
+}
 
-			companyList.forEach(function (company, index) {
-				var content = document.querySelector('#company-item-template').content;
-				
-				content.querySelector('.name').textContent = company.company;
-				content.querySelector('.description').textContent = company.description;
-				content.querySelector('.email').textContent = company.email;
-				content.querySelector('.url').textContent = company.url;
-				content.querySelector('.country').textContent = company.country;
+function loadCompanies () {
 
-				document.querySelector('#companies-list').appendChild(
-					document.importNode(content, true)
-				);
-				
-				document.getElementsByClassName('company')[index].addEventListener('click', removeElem);
-			});
+	$.getJSON('/companies', function (companyList) {
 
+		companyList.forEach(function (company, index) {
+			var companyTemplate = document.querySelector('#company-item-template').content;
+
+			fillTemplate({companyTemplate, company});
+
+			appendAndStampTemplate({companyTemplate});
+			
+			document.getElementsByClassName('company')[index].addEventListener('click', removeElem);
 		});
-	}
 
+	});
+}
+
+
+document.addEventListener('DOMContentLoaded', function () {
 	loadCompanies();
 });
