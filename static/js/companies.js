@@ -2,7 +2,9 @@
 
 document.addEventListener('DOMContentLoaded', function () {
 
-	var elem = document.getElementById('companies-list');
+	$.getJSON('/companies', function (data) {
+		console.log(data);
+	});
 
 	var companyList = JSON.parse(document.getElementById("companyList").childNodes[0].data);
 
