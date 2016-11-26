@@ -1,0 +1,10 @@
+Instrucciones
+
+Tenemos que hacer una request al servidor para que nos devuelva unos datos y construir con ellos un listado de empresas.
+Como no hay servidor, nos valdremos del archivo listing.json para mockear el servicio  (adjunto en el mail).
+ 
+Una vez construido el DOM, hay que habilitar la posibilidad de hacer click en cada ítem del listado.
+Este evento debe sacar una confirmación: “desea eliminar esta empresa: [company]?” donde confirmar debe borrar el ítem del DOM.
+ 
+El .html que tienes que montar lo dejamos a tu imaginación.
+Ordena todo como creas que es más efectivo y más óptimo, tanto a nivel de html como de script

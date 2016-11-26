@@ -1,0 +1,25 @@
+{
+  "name": "companies-list",
+  "version": "1.0.0",
+  "description": "display companies list that can be erased when clicked on them",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "author": "EduRomoGO",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^1.9.1",
+    "gulp": "^3.9.0",
+    "gulp-jshint": "^2.0.0"
+  },
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "express": "latest",
+    "require": "latest"
+  },
+  "engines": {
+    "node": "6.7.0"
+  }
+}
