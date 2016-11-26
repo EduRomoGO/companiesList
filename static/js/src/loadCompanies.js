@@ -26,13 +26,13 @@ function createDomElement (company, index) {
 	document.getElementsByClassName('company')[index].addEventListener('click', removeElem);
 }
 
-function onFulfilled (companyList) {
+function createDomElements (companyList) {
 	companyList.forEach(createDomElement);
 }
 
 function loadCompanies () {
 	$.getJSON('/companies')
-		.then(onFulfilled)
+		.then(createDomElements)
 		.catch(console.error)
 		.done();
 }
