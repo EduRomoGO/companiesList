@@ -1,0 +1,18 @@
+{
+  "name": "companies-list",
+  "description": "display companies list that can be erased when clicked on them",
+  "main": "app.js",
+  "authors": [
+    "EduRomoGO"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/EduRomoGO/companiesList",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
