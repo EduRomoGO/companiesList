@@ -19,17 +19,22 @@ function appendAndStampTemplate ({companyTemplate}) {
 }
 
 function createDomElement (company, index) {
-	var companyTemplate = document.querySelector('#company-item-template').content;
+	const companyTemplate = document.querySelector('#company-item-template').content;
 
 	fillTemplate({companyTemplate, company});
 	appendAndStampTemplate({companyTemplate});
 	document.getElementsByClassName('company')[index].addEventListener('click', removeElem);
 }
 
+function onFulfilled (companyList) {
+	companyList.forEach(createDomElement);
+}
+
 function loadCompanies () {
-	$.getJSON('/companies', function (companyList) {
-		companyList.forEach(createDomElement);
-	});
+	$.getJSON('/companies')
+		.then(onFulfilled)
+		.catch(console.error)
+		.done();
 }
 
 module.exports = loadCompanies;
