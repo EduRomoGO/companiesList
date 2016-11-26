@@ -12,7 +12,6 @@ function fillTemplate ({companyTemplate, company}) {
 	companyTemplate.querySelector('.country').textContent = company.country;
 }
 
-
 function appendAndStampTemplate ({companyTemplate}) {
 	document.querySelector('#companies-list').appendChild(
 		document.importNode(companyTemplate, true)
@@ -33,7 +32,4 @@ function loadCompanies () {
 	});
 }
 
-
-document.addEventListener('DOMContentLoaded', function () {
-	loadCompanies();
-});
+module.exports = loadCompanies;

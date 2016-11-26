@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon app.js",
-    "build": "browserify static/js/src/companies.js -o static/js/build/bundle.js",
-    "watch": "watchify static/js/src/companies.js -o static/js/build/bundle.js"
+    "build": "browserify static/js/src/index.js -o static/js/build/bundle.js",
+    "watch": "watchify static/js/src/index.js -o static/js/build/bundle.js"
   },
   "author": "EduRomoGO",
   "license": "ISC",
