@@ -1,5 +1,9 @@
 'use strict';
 
+var companiesList = require('./listing.json');
+
 function getCompaniesService (req, res) {
-	res.send({a: 3});
+	res.send(companiesList);
 }
+
+module.exports = getCompaniesService;
