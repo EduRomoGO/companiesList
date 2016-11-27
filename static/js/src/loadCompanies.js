@@ -2,9 +2,9 @@
 
 function createRemoveConfirmationDomElement ({company}) {
 	var	removeConfirmationTemplate = document.querySelector('#remove-confirmation-template').content,
-		msg = 'Do you want to remove ' + company.attributes.data.value + ' company?';
+		msg = 'Do you want to remove <b>' + company.attributes.data.value + '</b> company?';
 
-	removeConfirmationTemplate.querySelector('.confirmation').textContent = msg;
+	removeConfirmationTemplate.querySelector('.confirmation').innerHTML = msg;
 
 	document.querySelector('#remove-confirmation-dest').appendChild(
 		document.importNode(removeConfirmationTemplate, true)

@@ -29,12 +29,12 @@ body {
 .company .name {
 	padding: 8px 16px;
     background: #a2a2a2;
-    font-size: 24px;
+    font-size: 21px;
+    font-weight: bold;
 }
 
 
 .modal {
-    /*display: none;*/
     position: fixed; 
     z-index: 1; 
     padding-top: 100px; 
