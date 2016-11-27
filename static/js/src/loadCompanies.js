@@ -1,7 +1,58 @@
 'use strict';
 
-function removeElem (event) {
-	document.getElementById('companies-list').removeChild(this);
+function createRemoveConfirmationDomElement ({company}) {
+	var	removeConfirmationTemplate = document.querySelector('#remove-confirmation-template').content,
+		msg = 'Do you want to remove ' + company.attributes.data.value + ' company?';
+
+	removeConfirmationTemplate.querySelector('.confirmation').textContent = msg;
+
+	document.querySelector('#remove-confirmation-dest').appendChild(
+		document.importNode(removeConfirmationTemplate, true)
+	);
+}
+
+function removeConfirmationModal (modal) {
+	var modal = modal || document.getElementsByClassName('remove-confirmation')[0];
+
+    document.getElementById('remove-confirmation-dest').removeChild(modal);
+}
+
+
+function yesClick ({company}) {
+	removeConfirmationModal();
+    removeCompanyItem({company});	
+}
+
+function addListenersForConfirmationModal ({company}) {
+	window.addEventListener('click', function(event) {
+		var modal = document.getElementsByClassName('remove-confirmation')[0];
+
+	    if (event.target == modal) {
+	        removeConfirmationModal();
+	    }
+	});
+
+	document.getElementsByClassName("close")[0].addEventListener('click', function () {
+		removeConfirmationModal();
+	});
+
+	document.querySelector('.remove-confirmation-button').addEventListener('click', function () {
+		yesClick({company});
+	});
+}
+
+function displayConfirmation () {
+	var company = this;
+	console.log(this);
+
+	createRemoveConfirmationDomElement({company});
+	addListenersForConfirmationModal({company});
+}
+
+function removeCompanyItem ({company}) {
+	var company = company || this;
+
+	document.getElementById('companies-list').removeChild(company);
 }
 
 function fillTemplate ({companyTemplate, company}) {
@@ -18,18 +69,23 @@ function appendAndStampTemplate ({companyTemplate}) {
 	);
 }
 
-function createDomElement (company, index) {
-	var companyTemplate = document.querySelector('#company-item-template').content;
+function createCompanyDomElement (company, index) {
+	const companyTemplate = document.querySelector('#company-item-template').content;
 
 	fillTemplate({companyTemplate, company});
 	appendAndStampTemplate({companyTemplate});
-	document.getElementsByClassName('company')[index].addEventListener('click', removeElem);
+	document.getElementsByClassName('company')[index].setAttribute('data', company.company);
+	document.getElementsByClassName('company')[index].addEventListener('click', displayConfirmation);
 }
 
-function loadCompanies () {
-	$.getJSON('/companies', function (companyList) {
-		companyList.forEach(createDomElement);
-	});
+function createCompanyListDomElements (companyList) {
+	companyList.forEach(createCompanyDomElement);
 }
+
+
+function loadCompanies () {
+	$.getJSON('/companies', createCompanyListDomElements);
+}
+
 
 module.exports = loadCompanies;

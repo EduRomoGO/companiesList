@@ -8,6 +8,7 @@
 </head>
 <body>
 	<section id='companies-list' class='companies-list'></section>
+	<div id='remove-confirmation-dest'></div>
 	<script src="/bower/jquery/dist/jquery.min.js"></script>
 	<script type="text/javascript" src='js/build/bundle.js'></script>
 </body>
@@ -23,4 +24,16 @@
 			<div class='url'></div>
 		</section>
 	</article>
+</template>
+
+<template id='remove-confirmation-template'>
+	<div class="modal remove-confirmation">
+
+		<div class="modal-content">
+			<span class="close">×</span>
+			<p class='confirmation'></p>
+			<button class='remove-confirmation-button'>Yes</button>
+		</div>
+
+	</div>
 </template>
